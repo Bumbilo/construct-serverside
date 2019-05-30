@@ -1,7 +1,7 @@
 import * as express from 'express';
 import * as path from 'path';
 import * as bodyParser from 'body-parser';
-import * as authRoutes from './routes/auth';
+import authRouter from './routes/auth';
 
 const app: express.Application = express();
 
@@ -15,14 +15,6 @@ app.set( "view engine", "ejs" );
 
 
 app.use(bodyParser.urlencoded({extended: false}));
-app.use('/login', (req, res, next) => {
-   res.render('index');
-   // res.send('Hello world')
-   // res.render('/index', {
-   //    path: '/login',
-   //    pageTitle: 'Login',
-   //    errorMessage: 'errorasdlfkjasd',
-   // });
-});
+app.use(authRouter);
 
 export { app };
