@@ -1,23 +1,28 @@
-import express from 'express';
+import * as express from 'express';
+import * as path from 'path';
+import * as bodyParser from 'body-parser';
+import * as authRoutes from './routes/auth';
 
-// // const path = require('path');
-// // const express = require('express');
-// // const bodyParser = require('body-parser');
-// import path from  'path';
-// import bodyParser from 'body-parser';
+const app: express.Application = express();
+
+// app.set('view engine', 'ejs');
+// app.set("views", path.join(__dirname, "../views"));
+// app.set('views', 'views');
+// app.use(express.static(path.join(__dirname, 'public')));
+
+app.set( "views", path.join( __dirname, "views" ) );
+app.set( "view engine", "ejs" );
 
 
-const app = express();
+app.use(bodyParser.urlencoded({extended: false}));
+app.use('/login', (req, res, next) => {
+   res.render('index');
+   // res.send('Hello world')
+   // res.render('/index', {
+   //    path: '/login',
+   //    pageTitle: 'Login',
+   //    errorMessage: 'errorasdlfkjasd',
+   // });
+});
 
-// // app.use(bodyParser.urlencoded({ extended: false }));
-// // app.use(express.static(path.join(__dirname, 'public')));
-
-// // app.set('view engine', 'ejs');
-// // app.set('views', 'views');
-
-// // const authRoutes = require('./routes/auth')
-// // app.use(authRoutes);
-
-// app.listen(8080);
-
-export default app;
+export { app };

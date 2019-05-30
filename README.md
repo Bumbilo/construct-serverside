@@ -1,2 +1,2 @@
 # construct-serverside
-construct-serverside server 
+construct-serverside main 
